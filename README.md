@@ -1,4 +1,4 @@
-# MVVM and FTP: Perfect architectures for mobile development?
+# MVVM and FRP: Perfect architectures for mobile development?
 
 What every developer should know about MVVM and FRP.
 
