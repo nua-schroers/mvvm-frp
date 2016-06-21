@@ -162,7 +162,7 @@ class MainViewModel: NSObject, PresentDialog {
     private func gameOver(message:String) {
         self.dialogObserver.sendNext(DialogContext(title: NSLocalizedString("The game is over", comment: ""),
                                                    message: message,
-                                                   okButtonText: NSLocalizedString("The game is over", comment: ""),
+                                                   okButtonText: NSLocalizedString("New game", comment: ""),
                                                    action: { self.startNewGame() },
                                                    hasCancel: false))
     }
