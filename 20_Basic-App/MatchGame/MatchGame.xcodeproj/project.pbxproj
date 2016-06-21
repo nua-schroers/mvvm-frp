@@ -13,6 +13,7 @@
 		6BA6348F1CF7471A00ECA7BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6BA6348E1CF7471A00ECA7BF /* Assets.xcassets */; };
 		6BA634921CF7471A00ECA7BF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BA634901CF7471A00ECA7BF /* LaunchScreen.storyboard */; };
 		6BA6349D1CF7471A00ECA7BF /* MatchGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA6349C1CF7471A00ECA7BF /* MatchGameTests.swift */; };
+		6BC766261D194CB70065CEA1 /* MatchGameUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC766251D194CB70065CEA1 /* MatchGameUITests.swift */; };
 		6BCF34121CF854CC00BE7594 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BCF34111CF854CC00BE7594 /* SettingsViewController.swift */; };
 		6BCF342A1CF8563200BE7594 /* BasicEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BCF34231CF8563200BE7594 /* BasicEngine.swift */; };
 		6BCF342B1CF8563200BE7594 /* DumbEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BCF34241CF8563200BE7594 /* DumbEngine.swift */; };
@@ -33,6 +34,13 @@
 			remoteGlobalIDString = 6BA634831CF7471A00ECA7BF;
 			remoteInfo = MatchGame;
 		};
+		6BC766281D194CB70065CEA1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6BA6347C1CF7471A00ECA7BF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6BA634831CF7471A00ECA7BF;
+			remoteInfo = MatchGame;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +54,9 @@
 		6BA634981CF7471A00ECA7BF /* MatchGameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MatchGameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BA6349C1CF7471A00ECA7BF /* MatchGameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchGameTests.swift; sourceTree = "<group>"; };
 		6BA6349E1CF7471A00ECA7BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6BC766231D194CB70065CEA1 /* MatchGameUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MatchGameUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6BC766251D194CB70065CEA1 /* MatchGameUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchGameUITests.swift; sourceTree = "<group>"; };
+		6BC766271D194CB70065CEA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6BCF34111CF854CC00BE7594 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = Controller/SettingsViewController.swift; sourceTree = "<group>"; };
 		6BCF34231CF8563200BE7594 /* BasicEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BasicEngine.swift; path = Model/BasicEngine.swift; sourceTree = "<group>"; };
 		6BCF34241CF8563200BE7594 /* DumbEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DumbEngine.swift; path = Model/DumbEngine.swift; sourceTree = "<group>"; };
@@ -73,6 +84,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6BC766201D194CB70065CEA1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -81,6 +99,7 @@
 			children = (
 				6BA634861CF7471A00ECA7BF /* MatchGame */,
 				6BA6349B1CF7471A00ECA7BF /* MatchGameTests */,
+				6BC766241D194CB70065CEA1 /* MatchGameUITests */,
 				6BA634851CF7471A00ECA7BF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -90,6 +109,7 @@
 			children = (
 				6BA634841CF7471A00ECA7BF /* MatchGame.app */,
 				6BA634981CF7471A00ECA7BF /* MatchGameTests.xctest */,
+				6BC766231D194CB70065CEA1 /* MatchGameUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -158,6 +178,15 @@
 			name = " Administrative";
 			sourceTree = "<group>";
 		};
+		6BC766241D194CB70065CEA1 /* MatchGameUITests */ = {
+			isa = PBXGroup;
+			children = (
+				6BC766251D194CB70065CEA1 /* MatchGameUITests.swift */,
+				6BC766271D194CB70065CEA1 /* Info.plist */,
+			);
+			path = MatchGameUITests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -196,6 +225,24 @@
 			productReference = 6BA634981CF7471A00ECA7BF /* MatchGameTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		6BC766221D194CB70065CEA1 /* MatchGameUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6BC7662A1D194CB70065CEA1 /* Build configuration list for PBXNativeTarget "MatchGameUITests" */;
+			buildPhases = (
+				6BC7661F1D194CB70065CEA1 /* Sources */,
+				6BC766201D194CB70065CEA1 /* Frameworks */,
+				6BC766211D194CB70065CEA1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6BC766291D194CB70065CEA1 /* PBXTargetDependency */,
+			);
+			name = MatchGameUITests;
+			productName = MatchGameUITests;
+			productReference = 6BC766231D194CB70065CEA1 /* MatchGameUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -210,6 +257,10 @@
 						CreatedOnToolsVersion = 7.3.1;
 					};
 					6BA634971CF7471A00ECA7BF = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = 6BA634831CF7471A00ECA7BF;
+					};
+					6BC766221D194CB70065CEA1 = {
 						CreatedOnToolsVersion = 7.3.1;
 						TestTargetID = 6BA634831CF7471A00ECA7BF;
 					};
@@ -230,6 +281,7 @@
 			targets = (
 				6BA634831CF7471A00ECA7BF /* MatchGame */,
 				6BA634971CF7471A00ECA7BF /* MatchGameTests */,
+				6BC766221D194CB70065CEA1 /* MatchGameUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -246,6 +298,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		6BA634961CF7471A00ECA7BF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6BC766211D194CB70065CEA1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -282,6 +341,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6BC7661F1D194CB70065CEA1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6BC766261D194CB70065CEA1 /* MatchGameUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -289,6 +356,11 @@
 			isa = PBXTargetDependency;
 			target = 6BA634831CF7471A00ECA7BF /* MatchGame */;
 			targetProxy = 6BA634991CF7471A00ECA7BF /* PBXContainerItemProxy */;
+		};
+		6BC766291D194CB70065CEA1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6BA634831CF7471A00ECA7BF /* MatchGame */;
+			targetProxy = 6BC766281D194CB70065CEA1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -443,6 +515,28 @@
 			};
 			name = Release;
 		};
+		6BC7662B1D194CB70065CEA1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = MatchGameUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.nua-schroers.MatchGameUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = MatchGame;
+			};
+			name = Debug;
+		};
+		6BC7662C1D194CB70065CEA1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = MatchGameUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.nua-schroers.MatchGameUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = MatchGame;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -472,6 +566,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		6BC7662A1D194CB70065CEA1 /* Build configuration list for PBXNativeTarget "MatchGameUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6BC7662B1D194CB70065CEA1 /* Debug */,
+				6BC7662C1D194CB70065CEA1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
