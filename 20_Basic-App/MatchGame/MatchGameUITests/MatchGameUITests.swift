@@ -24,7 +24,7 @@ class MatchGameUITests: XCTestCase {
     // MARK: UI workflow test
 
     /// Play and win a single game with default settings.
-    func testConfigureAndPlayGame() {
+    func testPlayGame() {
         let app = XCUIApplication()
 
         // Assert we are on the main screen and the game is on.
