@@ -80,4 +80,36 @@ class MatchGameTests: XCTestCase {
         XCTAssertFalse(mainVM.buttonThreeEnabled.value)
     }
 
+    /// Play an entire game with default configuration.
+    func testPlayAnEntireGame() {
+        let mainVM = MainViewModel()
+
+        // Observe the dialog context.
+        var dialogContext: DialogContext?
+        mainVM.dialogSignal.observe { (dialogEvent: Event<DialogContext, NoError>) in
+            dialogContext = dialogEvent.value
+        }
+
+        // Assert initial state.
+        XCTAssertNil(dialogContext)
+        XCTAssertEqual(mainVM.gameState.value, "18 matches")
+
+        // Play the game.
+        mainVM.takeThreeAction.execute(nil)
+        XCTAssertEqual(mainVM.gameState.value, "14 matches")
+        XCTAssertEqual(mainVM.moveReport.value, "I remove 1 match")
+        mainVM.takeThreeAction.execute(nil)
+        mainVM.takeThreeAction.execute(nil)
+        mainVM.takeThreeAction.execute(nil)
+        XCTAssertEqual(mainVM.gameState.value, "2 matches")
+        XCTAssertNil(dialogContext)
+
+        // End the game (user wins).
+        mainVM.takeOneAction.execute(nil)
+        XCTAssertNotNil(dialogContext)
+        XCTAssertEqual(dialogContext!.title, "The game is over")
+        XCTAssertEqual(dialogContext!.message, "I have lost")
+        XCTAssertEqual(dialogContext!.okButtonText, "New game")
+    }
+
 }
