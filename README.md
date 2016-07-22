@@ -1,5 +1,7 @@
 # MVVM and FRP: Perfect architectures for mobile development?
 
+![Swift 2.2.x](https://img.shields.io/badge/Swift-2.2.x-orange.svg) ![platforms](https://img.shields.io/badge/platforms-iOS-lightgrey.svg) [![GitHub license](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/nua-schroers/mvvm-frp/master/LICENSE) ![Travis build](https://travis-ci.org/nua-schroers/mvvm-frp.svg?=master)
+
 What every developer should know about MVVM and FRP.
 
 This set of files accompanies a presentation at the [Developer Week 2016](http://www.developer-week.de) conference, Nuremberg, Germany. See http://dwx2016.nua-schroers.de for further information (in German).
