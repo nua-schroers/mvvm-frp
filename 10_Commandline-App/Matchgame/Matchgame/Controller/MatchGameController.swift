@@ -17,7 +17,7 @@ class MatchGameController {
     /// Default configuration values.
     let defaultInitialCount = 18
     let defaultRemoveMax = 3
-    let defaultStrategy = MatchModel.Strategy.Wild
+    let defaultStrategy = MatchModel.Strategy.wild
 
     /// Main app workflow.
     func play() {
@@ -28,15 +28,16 @@ class MatchGameController {
         // Configure the starting parameters.
         let configuration = MatchGameUI.queryConfiguration()
         self.model.initialCount = (configuration.0 > 0) ? configuration.0 : defaultInitialCount
-        self.model.removeMax = ((configuration.1 > 0 && configuration.1 < configuration.0) ?
-            configuration.1 : defaultRemoveMax)
+        self.model.removeMax = ((configuration.1 > 0 &&
+            configuration.1 < configuration.0) ?
+                configuration.1 : defaultRemoveMax)
         switch configuration.2 {
         case 1:
-            self.model.strategy = MatchModel.Strategy.Dumb
+            self.model.strategy = MatchModel.Strategy.dumb
         case 2:
-            self.model.strategy = MatchModel.Strategy.Wild
+            self.model.strategy = MatchModel.Strategy.wild
         case 3:
-            self.model.strategy = MatchModel.Strategy.Smart
+            self.model.strategy = MatchModel.Strategy.smart
         default:
             self.model.strategy = defaultStrategy
         }
