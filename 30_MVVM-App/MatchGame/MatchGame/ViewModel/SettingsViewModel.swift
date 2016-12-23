@@ -24,7 +24,7 @@ class SettingsViewModel: NSObject {
     // MARK: Private state container and private delegate storage
 
     /// The private state, the regular `MatchDataContext` is sufficient.
-    private var settingsState: MatchDataContext?
+    fileprivate var settingsState: MatchDataContext?
 
     // MARK: State of the view
 
@@ -71,12 +71,12 @@ class SettingsViewModel: NSObject {
     // MARK: VM talks to other VMs
 
     /// Activities are handled through the `ReceiveDataContext` protocol, this is how the VM talks to other VMs.
-    private weak var contextDelegate: ReceiveDataContext?
+    fileprivate weak var contextDelegate: ReceiveDataContext?
 
     // MARK: Controller talks to VM
 
     /// Configure with the context and context delegate.
-    func configure(context: MatchDataContext,
+    func configure(_ context: MatchDataContext,
                    contextDelegate: ReceiveDataContext) {
         self.settingsState = context
         self.contextDelegate = contextDelegate
@@ -97,19 +97,19 @@ class SettingsViewModel: NSObject {
     }
 
     /// User moves the initial match count slider.
-    func userMovesInitialMatchCountSlider(newCount: Float) {
+    func userMovesInitialMatchCountSlider(_ newCount: Float) {
         self.settingsState?.initialMatchCount = Int(newCount)
         self.delegate?.updateLabelsAndSlidersAndSegControl()
     }
 
     /// User moves the remove maximum slider.
-    func userMovesRemoveMaxSlider(newCount: Float) {
+    func userMovesRemoveMaxSlider(_ newCount: Float) {
         self.settingsState?.removeMax = Int(newCount)
         self.delegate?.updateLabelsAndSlidersAndSegControl()
     }
 
     /// User changes the strategy selector.
-    func userSelectsStrategy(newIndex: Int) {
+    func userSelectsStrategy(_ newIndex: Int) {
         self.settingsState?.strategyIndex = newIndex
         self.delegate?.updateLabelsAndSlidersAndSegControl()
     }

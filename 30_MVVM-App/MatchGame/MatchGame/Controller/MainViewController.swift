@@ -24,7 +24,7 @@ class MainViewController: MVVMViewController, MainTakeAction {
         self.viewModel.delegate = self
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         self.viewModel.viewWillAppear()
@@ -50,22 +50,22 @@ class MainViewController: MVVMViewController, MainTakeAction {
     @IBOutlet weak var takeThreeButton: UIButton!
 
     /// Response to user tapping "Take 1".
-    @IBAction func userTappedTakeOne(sender: AnyObject) {
+    @IBAction func userTappedTakeOne(_ sender: AnyObject) {
         self.viewModel.userTappedTake(1)
     }
 
     /// Response to user tapping "Take 2".
-    @IBAction func userTappedTakeTwo(sender: AnyObject) {
+    @IBAction func userTappedTakeTwo(_ sender: AnyObject) {
         self.viewModel.userTappedTake(2)
     }
 
     /// Response to user tapping "Take 3".
-    @IBAction func userTappedTakeThree(sender: AnyObject) {
+    @IBAction func userTappedTakeThree(_ sender: AnyObject) {
         self.viewModel.userTappedTake(3)
     }
 
     /// Response to user tapping "Info".
-    @IBAction func userTappedInfo(sender: AnyObject) {
+    @IBAction func userTappedInfo(_ sender: AnyObject) {
         self.viewModel.userTappedInfo()
     }
 
@@ -73,16 +73,16 @@ class MainViewController: MVVMViewController, MainTakeAction {
 
     func transitionToSettings() {
         // Instantiate the settings screen view controller and configure the UI transition.
-        let settingsController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("SettingsViewController") as! SettingsViewController
-        settingsController.modalPresentationStyle = .CurrentContext
-        settingsController.modalTransitionStyle = .FlipHorizontal
+        let settingsController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SettingsViewController") as! SettingsViewController
+        settingsController.modalPresentationStyle = .currentContext
+        settingsController.modalTransitionStyle = .flipHorizontal
 
         // Set the data context.
         settingsController.configure(self.viewModel.createContext(),
                                      contextDelegate: self.viewModel)
 
         // Perform the transition.
-        self.presentViewController(settingsController,
+        self.present(settingsController,
                                    animated: true,
                                    completion: nil)
     }
@@ -90,15 +90,15 @@ class MainViewController: MVVMViewController, MainTakeAction {
     func updateLabelsAndButtonStates() {
         self.gameStateLabel.text = self.viewModel.gameState
         self.moveReportLabel.text = self.viewModel.moveReport
-        self.takeTwoButton.enabled = self.viewModel.buttonTwoEnabled
-        self.takeThreeButton.enabled = self.viewModel.buttonThreeEnabled
+        self.takeTwoButton.isEnabled = self.viewModel.buttonTwoEnabled
+        self.takeThreeButton.isEnabled = self.viewModel.buttonThreeEnabled
     }
 
-    func setMatchesInPileView(count:Int) {
+    func setMatchesInPileView(_ count:Int) {
         self.matchPileView.setMatches(count)
     }
 
-    func removeMatchesInPileView(count:Int) {
+    func removeMatchesInPileView(_ count:Int) {
         self.matchPileView.removeMatches(count)
     }
 }

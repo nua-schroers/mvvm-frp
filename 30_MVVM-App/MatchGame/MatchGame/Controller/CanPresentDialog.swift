@@ -12,9 +12,9 @@ import Foundation
 protocol CanPresentDialog: class {
 
     /// Present a dialog with a title, a message, a main action and whether it should have a "Cancel" button.
-    func presentDialog(title: String,
+    func presentDialog(_ title: String,
                        message: String,
                        okButtonText: String,
-                       action: () -> Void,
+                       action: @escaping () -> Void,
                        hasCancel: Bool)
 }

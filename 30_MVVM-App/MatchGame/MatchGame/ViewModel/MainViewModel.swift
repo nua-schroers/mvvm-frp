@@ -18,10 +18,10 @@ protocol MainTakeAction: CanPresentDialog {
     func updateLabelsAndButtonStates()
 
     /// Set a certain number of matches in the match pile view.
-    func setMatchesInPileView(count:Int)
+    func setMatchesInPileView(_ count:Int)
 
     /// Remove a certain number of matches in the match pile view.
-    func removeMatchesInPileView(count:Int)
+    func removeMatchesInPileView(_ count:Int)
 }
 
 /// View model corresponding to the "Main" game screen.
@@ -30,7 +30,7 @@ class MainViewModel: NSObject, ReceiveDataContext {
     // MARK: The data model (a new home!)
 
     /// Data model for the game state.
-    private var matchModel = MatchModel()
+    fileprivate var matchModel = MatchModel()
 
     // MARK: State of the view
 
@@ -71,11 +71,11 @@ class MainViewModel: NSObject, ReceiveDataContext {
         context.initialMatchCount = self.matchModel.initialCount
         context.removeMax = self.matchModel.removeMax
         switch self.matchModel.strategy {
-        case .Dumb:
+        case .dumb:
             context.strategyIndex = 0
-        case .Wild:
+        case .wild:
             context.strategyIndex = 1
-        case .Smart:
+        case .smart:
             context.strategyIndex = 2
         }
         return context
@@ -92,29 +92,29 @@ class MainViewModel: NSObject, ReceiveDataContext {
     }
 
     /// Respond to "Take 1", "Take 2" and "Take 3" button.
-    func userTappedTake(count:Int) {
+    func userTappedTake(_ count:Int) {
         self.userMove(count)
     }
 
     // MARK: VM talks to another VM -- CanAcceptSettings
 
-    func dataContextChanged(context: MatchDataContext) {
+    func dataContextChanged(_ context: MatchDataContext) {
         self.matchModel.initialCount = context.initialMatchCount
         self.matchModel.removeMax = context.removeMax
         switch context.strategyIndex {
         case 0:
-            self.matchModel.strategy = .Dumb
+            self.matchModel.strategy = .dumb
         case 1:
-            self.matchModel.strategy = .Wild
+            self.matchModel.strategy = .wild
         default:
-            self.matchModel.strategy = .Smart
+            self.matchModel.strategy = .smart
         }
     }
 
     // MARK: Internal helpers
 
     /// Return a number of matches with proper unit.
-    private func prettyMatchString(count:Int) -> String {
+    fileprivate func prettyMatchString(_ count:Int) -> String {
         switch count {
         case 1:
             return NSLocalizedString("1 match", comment: "")
@@ -124,7 +124,7 @@ class MainViewModel: NSObject, ReceiveDataContext {
     }
 
     /// Start a new game.
-    private func startNewGame() {
+    fileprivate func startNewGame() {
         // Handle the data model.
         self.matchModel.restart()
 
@@ -137,7 +137,7 @@ class MainViewModel: NSObject, ReceiveDataContext {
     }
 
     /// End a single game.
-    private func gameOver(message:String) {
+    fileprivate func gameOver(_ message:String) {
         self.delegate?.presentDialog(NSLocalizedString("The game is over", comment: ""),
                                     message: message,
                                     okButtonText: NSLocalizedString("New game", comment: ""),
@@ -148,7 +148,7 @@ class MainViewModel: NSObject, ReceiveDataContext {
     }
 
     /// Execute a user move.
-    private func userMove(count:Int) {
+    fileprivate func userMove(_ count:Int) {
         // Update the data model.
         self.matchModel.performUserMove(count)
 
