@@ -12,7 +12,7 @@ import UIKit
 protocol CanAcceptSettings: class {
 
     /// Accept the current settings.
-    func settingsChanged(strategySelector: Int,
+    func settingsChanged(_ strategySelector: Int,
                          initialMatchOunt: Int,
                          removeMax: Int)
 }
@@ -22,26 +22,26 @@ class MainViewController: UIViewController, CanAcceptSettings {
 
     // MARK: Lifecycle/workflow management
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         // Start a new game.
         self.startNewGame()
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "settings" {
-            let controller = segue.destinationViewController as! SettingsViewController
+            let controller = segue.destination as! SettingsViewController
 
             // Set the initial state of the settings screen.
             controller.initialMatchCount = self.matchModel.initialCount
             controller.removeMax = self.matchModel.removeMax
             switch self.matchModel.strategy {
-            case .Dumb:
+            case .dumb:
                 controller.strategy = 0
-            case .Wild:
+            case .wild:
                 controller.strategy = 1
-            case .Smart:
+            case .smart:
                 controller.strategy = 2
             }
             controller.delegate = self
@@ -50,17 +50,17 @@ class MainViewController: UIViewController, CanAcceptSettings {
 
     // MARK: CanAcceptSettings
 
-    func settingsChanged(strategySelector: Int,
+    func settingsChanged(_ strategySelector: Int,
                          initialMatchOunt: Int,
                          removeMax: Int) {
         self.matchModel.initialCount = initialMatchOunt
         switch strategySelector {
         case 0:
-            self.matchModel.strategy = .Dumb
+            self.matchModel.strategy = .dumb
         case 1:
-            self.matchModel.strategy = .Wild
+            self.matchModel.strategy = .wild
         default:
-            self.matchModel.strategy = .Smart
+            self.matchModel.strategy = .smart
         }
         self.matchModel.removeMax = removeMax
     }
@@ -88,24 +88,24 @@ class MainViewController: UIViewController, CanAcceptSettings {
     @IBOutlet weak var takeThreeButton: UIButton!
 
     /// Response to user tapping "Take 1".
-    @IBAction func userTappedTakeOne(sender: AnyObject) {
+    @IBAction func userTappedTakeOne(_ sender: AnyObject) {
         self.userMove(1)
     }
 
     /// Response to user tapping "Take 2".
-    @IBAction func userTappedTakeTwo(sender: AnyObject) {
+    @IBAction func userTappedTakeTwo(_ sender: AnyObject) {
         self.userMove(2)
     }
 
     /// Response to user tapping "Take 3".
-    @IBAction func userTappedTakeThree(sender: AnyObject) {
+    @IBAction func userTappedTakeThree(_ sender: AnyObject) {
         self.userMove(3)
     }
 
     // MARK: Game flow/controller
 
     /// - returns: A number of matches with proper unit.
-    func prettyMatchString(count:Int) -> String {
+    func prettyMatchString(_ count:Int) -> String {
         switch count {
         case 1:
             return NSLocalizedString("1 match", comment: "")
@@ -135,35 +135,35 @@ class MainViewController: UIViewController, CanAcceptSettings {
     func updateButtons() {
         switch min(self.matchModel.matchCount, self.matchModel.removeMax) {
         case 2:
-            self.takeTwoButton.enabled = true
-            self.takeThreeButton.enabled = false
+            self.takeTwoButton.isEnabled = true
+            self.takeThreeButton.isEnabled = false
         case 1:
-            self.takeTwoButton.enabled = false
-            self.takeThreeButton.enabled = false
+            self.takeTwoButton.isEnabled = false
+            self.takeThreeButton.isEnabled = false
         default:
-            self.takeTwoButton.enabled = true
-            self.takeThreeButton.enabled = true
+            self.takeTwoButton.isEnabled = true
+            self.takeThreeButton.isEnabled = true
         }
     }
 
     /// End a single game.
-    func gameOver(message: String) {
+    func gameOver(_ message: String) {
         let messageController = UIAlertController(title: NSLocalizedString("The game is over", comment: ""),
                                                   message: message,
-                                                  preferredStyle: .Alert)
+                                                  preferredStyle: .alert)
         let buttonResponse = UIAlertAction(title: NSLocalizedString("New game", comment: ""),
-                                           style: .Default) { (_) in
+                                           style: .default) { (_) in
                                             self.startNewGame()
         }
         messageController.addAction(buttonResponse)
 
-        self.presentViewController(messageController,
+        self.present(messageController,
                                    animated: true,
                                    completion: nil)
     }
 
     /// Execute a user move.
-    func userMove(count: Int) {
+    func userMove(_ count: Int) {
         // Update the data model.
         self.matchModel.performUserMove(count)
 

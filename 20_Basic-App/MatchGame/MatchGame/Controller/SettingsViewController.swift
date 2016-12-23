@@ -47,14 +47,14 @@ class SettingsViewController: UIViewController {
     }
 
     /// User taps the "Done" button.
-    @IBAction func userTapsDone(sender: AnyObject) {
+    @IBAction func userTapsDone(_ sender: AnyObject) {
         // Submit the current settings to the delegate.
         self.delegate?.settingsChanged(self.strategySelector.selectedSegmentIndex,
             initialMatchOunt: self.initialMatchCount,
             removeMax: self.removeMax)
 
         // Transition back to primary game screen.
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
 
     /// Label for initial match count.
@@ -73,13 +73,13 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var strategySelector: UISegmentedControl!
 
     /// Reaction to moving the initial count slider.
-    @IBAction func userChangesInitialMatchCount(sender: AnyObject) {
+    @IBAction func userChangesInitialMatchCount(_ sender: AnyObject) {
         self.initialMatchCount = Int(self.initivalMatchCountSlider.value)
         self.updateLabels()
     }
 
     /// Reaction to moving the remove maximum slider.
-    @IBAction func userChangesRemoveMaxCount(sender: AnyObject) {
+    @IBAction func userChangesRemoveMaxCount(_ sender: AnyObject) {
         self.removeMax = Int(self.removeMaxSlider.value)
         self.updateLabels()
     }
