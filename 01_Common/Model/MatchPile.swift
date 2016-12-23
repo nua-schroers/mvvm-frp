@@ -18,8 +18,8 @@ class MatchPile {
     /// - User: The user moves next.
     /// - Computer: The computer moves next.
     enum RightToMove {
-        case User
-        case Computer
+        case user
+        case computer
     }
 
     // MARK: Board state
@@ -34,7 +34,7 @@ class MatchPile {
     var removeMax = 3
 
     /// The current right to move state.
-    var rightToMove: RightToMove = .User
+    var rightToMove: RightToMove = .user
 
     // MARK: Public methods to manipulate the board state
 
@@ -46,7 +46,7 @@ class MatchPile {
     /// Remove a certain number of matches.
     ///
     /// - Parameter number: Number of matches to remove.
-    func removeMatches(number: Int) {
+    func removeMatches(_ number: Int) {
         if self.count > number {
             self.count -= number
         } else {

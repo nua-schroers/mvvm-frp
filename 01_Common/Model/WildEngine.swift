@@ -28,8 +28,8 @@ class WildEngine: BasicEngine, EngineMove {
     /// - Parameter upper: Upper limit for resulting random number (inclusive, defaults to 3).
     ///                    `upper` must be larger than `lower`.
     /// - returns: An integer random number between `lower` and `upper`.
-    private func randomNumber(lower:Int = 1, upper:Int = 3) -> Int {
-        assert(upper > lower,
+    fileprivate func randomNumber(_ lower:Int = 1, upper:Int = 3) -> Int {
+        assert(upper >= lower,
                "The upper limit must be larger than the lower one")
 
         let random1 = arc4random_uniform(UInt32(upper - lower + 1))

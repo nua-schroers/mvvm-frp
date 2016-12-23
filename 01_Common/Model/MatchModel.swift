@@ -19,9 +19,9 @@ class MatchModel {
     /// - Wild: Takes a random number of matches.
     /// - Smart: Perfect play, takes the optimal number of matches.
     enum Strategy {
-        case Dumb
-        case Wild
-        case Smart
+        case dumb
+        case wild
+        case smart
     }
 
     // MARK: Administrative
@@ -34,14 +34,14 @@ class MatchModel {
     // MARK: Game state
 
     /// Choose an engine based on the selected strategy.
-    var strategyType = Strategy.Dumb {
+    var strategyType = Strategy.dumb {
         willSet(newStrategy) {
             switch newStrategy {
-            case .Dumb:
+            case .dumb:
                 self.engine = DumbEngine(myPile: self.pile)
-            case .Wild:
+            case .wild:
                 self.engine = WildEngine(myPile: self.pile)
-            case .Smart:
+            case .smart:
                 self.engine = SmartEngine(myPile: self.pile)
             }
         }
@@ -96,7 +96,7 @@ class MatchModel {
 
     /// - returns: The current limit of matches the user can take in his move. Returns 0 on the computer's move.
     func userLimit() -> Int {
-        return (self.pile.rightToMove == .User) ? self.pile.limit() : 0
+        return (self.pile.rightToMove == .user) ? self.pile.limit() : 0
     }
 
     /// - returns: Whether the game is lost.
@@ -108,7 +108,7 @@ class MatchModel {
 
     /// Restart the game.
     func restart() {
-        self.pile.rightToMove = .User
+        self.pile.rightToMove = .user
         self.pile.restart()
     }
 
@@ -116,33 +116,33 @@ class MatchModel {
     ///
     /// - returns: The computer's move.
     func performComputerMove() -> Int {
-        assert(self.pile.rightToMove == .Computer,
+        assert(self.pile.rightToMove == .computer,
                "This method must only be called when it's the computer's turn to move")
 
         let move = self.engine.computerMove()
         self.pile.removeMatches(move)
-        self.pile.rightToMove = .User
+        self.pile.rightToMove = .user
         return move
     }
 
     /// Perform the user move.
     ///
     /// - Parameter move: The number of matches the user removes.
-    func performUserMove(move:Int) {
+    func performUserMove(_ move:Int) {
         assert(move <= self.pile.limit(),
                "The user move is invalid and must be validated prior to calling this method")
-        assert(self.pile.rightToMove == .User,
+        assert(self.pile.rightToMove == .user,
                "This method must only be called when it's the user's turn to move")
 
         self.pile.removeMatches(move)
-        self.pile.rightToMove = .Computer
+        self.pile.rightToMove = .computer
     }
 
     // MARK: Private implementation
 
     /// The match pile (playing board state).
-    private var pile = MatchPile()
+    fileprivate var pile = MatchPile();
 
     /// Search engine for the computer move.
-    private var engine: EngineMove
+    fileprivate var engine: EngineMove
 }
