@@ -26,7 +26,7 @@ class MatchGameTests: XCTestCase {
     /// Verify dumb engine.
     func testDumbEngine() {
         matchModel.initialCount = 10
-        matchModel.strategy = .Dumb
+        matchModel.strategy = .dumb
         matchModel.restart()
         matchModel.performUserMove(1)
 
@@ -37,7 +37,7 @@ class MatchGameTests: XCTestCase {
     /// Verify smart engine.
     func testSmartEngine() {
         matchModel.initialCount = 12
-        matchModel.strategy = .Smart
+        matchModel.strategy = .smart
         matchModel.restart()
         matchModel.performUserMove(1)
 
