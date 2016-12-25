@@ -22,25 +22,25 @@ class SingleMatchView: UIView {
     }
 
     /// Configure this view (sets background color).
-    private func setup() {
-        self.backgroundColor = UIColor.clearColor()
+    fileprivate func setup() {
+        self.backgroundColor = UIColor.clear
     }
 
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         let context = UIGraphicsGetCurrentContext()
 
         // Draw the match body in yellow color.
-        UIColor.yellowColor().set()
-        CGContextMoveToPoint(context, 5, 5)
-        CGContextAddLineToPoint(context, 10, 5)
-        CGContextAddLineToPoint(context, 10, 55)
-        CGContextAddLineToPoint(context, 5, 55)
-        CGContextDrawPath(context, .FillStroke)
+        UIColor.yellow.set()
+        context?.move(to: CGPoint(x: 5, y: 5))
+        context?.addLine(to: CGPoint(x: 10, y: 5))
+        context?.addLine(to: CGPoint(x: 10, y: 55))
+        context?.addLine(to: CGPoint(x: 5, y: 55))
+        context!.drawPath(using: .fillStroke)
 
         // Draw the match head in red color.
-        UIColor.redColor().set()
-        let headShape = CGRectMake(2, 0, 11, 20)
-        CGContextAddEllipseInRect(context, headShape)
-        CGContextDrawPath(context, .FillStroke)
+        UIColor.red.set()
+        let headShape = CGRect(x: 2, y: 0, width: 11, height: 20)
+        context!.addEllipse(in: headShape)
+        context!.drawPath(using: .fillStroke)
     }
 }

@@ -34,7 +34,7 @@ class MatchGameUI {
     /// Display the current game state.
     ///
     /// - Parameter count: The current number of matches.
-    class func showState(count: Int) {
+    class func showState(_ count: Int) {
         print("There are \(count) matches")
     }
 
@@ -42,7 +42,7 @@ class MatchGameUI {
     ///
     /// - returns: The player move.
     /// - Parameter limit: The maximum number of matches the player may remove.
-    class func userMove(limit:Int) -> Int {
+    class func userMove(_ limit:Int) -> Int {
         var userMove = 0
         var isMoveValid = false
 
@@ -66,7 +66,7 @@ class MatchGameUI {
     /// Show the number of matches the Mac has taken.
     ///
     /// - Parameter move: The computer's move.
-    class func showComputerMove(move:Int) {
+    class func showComputerMove(_ move:Int) {
         print("I have taken \(move) matches")
     }
 
@@ -80,21 +80,14 @@ class MatchGameUI {
     /// Query user for an integer number.
     ///
     /// - returns: The number the user has entered or 0 for an invalid input.
-    private class func queryIntNumber() -> Int {
+    fileprivate class func queryIntNumber() -> Int {
         // Query user input (may return arbitrary data), convert input to a string.
-        let userEntry = NSFileHandle.fileHandleWithStandardInput().availableData
-        let userString = NSString(data: userEntry,
-                                  encoding: NSUTF8StringEncoding)
+        let userEntry = FileHandle.standardInput.availableData
+        let userString = String(data: userEntry,
+                                encoding: String.Encoding.utf8) ?? "0"
 
         // Attempt to convert to a number.
-        let userNumber = userString?.integerValue
-        switch userNumber {
-        case _ where userNumber != nil:
-            // A proper number was entered.
-            return userNumber!
-        default:
-            // Invalid data was entered, use fallback to 0.
-            return 0
-        }
+        let userNumber = Int(userString.trimmingCharacters(in: .newlines)) ?? 0
+        return userNumber;
     }
 }
