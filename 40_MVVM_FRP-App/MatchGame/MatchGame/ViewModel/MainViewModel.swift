@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ReactiveSwift
 import ReactiveCocoa
 
 /// View model corresponding to the "Main" game screen.
@@ -15,7 +16,7 @@ class MainViewModel: NSObject, PresentDialog {
     // MARK: The data model (a new home!)
 
     /// Data model for the game state.
-    private var reactiveModel = ReactiveModel()
+    fileprivate var reactiveModel = ReactiveModel()
 
     // MARK: VM -> Controller communication (state of the view and signals)
 
@@ -46,10 +47,10 @@ class MainViewModel: NSObject, PresentDialog {
     // MARK: Controller -> VM communication
 
     /// Taps on the buttons.
-    var takeOneAction: CocoaAction!
-    var takeTwoAction: CocoaAction!
-    var takeThreeAction: CocoaAction!
-    var infoButtonAction: CocoaAction!
+    var takeOneAction: CocoaAction<Any>!
+    var takeTwoAction: CocoaAction<Any>!
+    var takeThreeAction: CocoaAction<Any>!
+    var infoButtonAction: CocoaAction<Any>!
 
     /// Handle when the view will appear.
     func viewWillAppear() {
@@ -59,15 +60,15 @@ class MainViewModel: NSObject, PresentDialog {
     // MARK: VM -> VM communication
 
     /// Configure the communication with the settings view model declaratively.
-    func configure(dataContextViewModel: CanSupplyDataContext) {
+    func configure(_ dataContextViewModel: CanSupplyDataContext) {
         // Set initial values.
         dataContextViewModel.initialMatchSliderValue.value = Float(self.reactiveModel.initialCount.value)
         dataContextViewModel.removeMaxSliderValue.value = Float(self.reactiveModel.removeMax.value)
         let strategyIndex:Int
         switch self.reactiveModel.strategy.value {
-        case .Dumb:
+        case .dumb:
             strategyIndex = 0
-        case .Wild:
+        case .wild:
             strategyIndex = 1
         default:
             strategyIndex = 2
@@ -80,11 +81,11 @@ class MainViewModel: NSObject, PresentDialog {
         self.reactiveModel.strategy <~ dataContextViewModel.strategyIndex.producer.map({ (index) -> MatchModel.Strategy in
             switch (index) {
             case 0:
-                return .Dumb
+                return .dumb
             case 1:
-                return .Wild
+                return .wild
             default:
-                return .Smart
+                return .smart
             }
         })
     }
@@ -124,7 +125,7 @@ class MainViewModel: NSObject, PresentDialog {
             return SignalProducer.empty
         })
         let takeInfoRACAction = Action<Void, Void, NoError> {
-            self.transitionObserver.sendNext()
+            self.transitionObserver.send(value: Void())
             return SignalProducer.empty
         }
         self.takeOneAction = CocoaAction(takeOneRACAction, input: ())
@@ -135,11 +136,11 @@ class MainViewModel: NSObject, PresentDialog {
 
     // MARK: Internal helpers
 
-    private var dialogObserver: Observer<DialogContext, NoError>
-    private var transitionObserver: Observer<Void, NoError>
+    fileprivate var dialogObserver: Observer<DialogContext, NoError>
+    fileprivate var transitionObserver: Observer<Void, NoError>
 
     /// Return a number of matches with proper unit.
-    private func prettyMatchString(count:Int) -> String {
+    fileprivate func prettyMatchString(_ count:Int) -> String {
         switch count {
         case 1:
             return NSLocalizedString("1 match", comment: "")
@@ -149,7 +150,7 @@ class MainViewModel: NSObject, PresentDialog {
     }
 
     /// Start a new game.
-    private func startNewGame() {
+    fileprivate func startNewGame() {
         // Handle the data model.
         self.reactiveModel.restart()
 
@@ -159,16 +160,16 @@ class MainViewModel: NSObject, PresentDialog {
     }
 
     /// End the current game.
-    private func gameOver(message:String) {
-        self.dialogObserver.sendNext(DialogContext(title: NSLocalizedString("The game is over", comment: ""),
-                                                   message: message,
-                                                   okButtonText: NSLocalizedString("New game", comment: ""),
-                                                   action: { self.startNewGame() },
-                                                   hasCancel: false))
+    fileprivate func gameOver(_ message:String) {
+        self.dialogObserver.send(value: DialogContext(title: NSLocalizedString("The game is over", comment: ""),
+                                                      message: message,
+                                                      okButtonText: NSLocalizedString("New game", comment: ""),
+                                                      action: { self.startNewGame() },
+                                                      hasCancel: false))
     }
 
     /// Execute a user move.
-    private func userMove(count:Int) {
+    fileprivate func userMove(_ count:Int) {
         // Update the data model.
         self.reactiveModel.performUserMove(count)
 
@@ -197,5 +198,5 @@ class MainViewModel: NSObject, PresentDialog {
             }
         }
     }
-
+    
 }

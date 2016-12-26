@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ReactiveSwift
 import ReactiveCocoa
 
 /// View model corresponding to the "Settings" screen.
@@ -35,21 +36,21 @@ class SettingsViewModel: NSObject, CanSupplyDataContext, PresentDialog {
     // MARK: Controller -> VM communication
 
     /// Tap on the "Done" button.
-    var doneAction: CocoaAction!
+    var doneAction: CocoaAction<Any>!
 
     // MARK: Declarative init
 
     /// Designated initializer.
     override init() {
-        // Set up capability to submit dialog requests.
-        let (signalForDialog, observerForDialog) = Signal<DialogContext, NoError>.pipe()
-        self.dialogSignal = signalForDialog
-        self.dialogObserver = observerForDialog
-
         // Set up the capability for requests to close the settings screen.
         let (signalForDone, observerForDone) = Signal<Void, NoError>.pipe()
         self.doneSignal = signalForDone
         self.doneObserver = observerForDone
+
+        // Set up capability to submit dialog requests.
+        let (signalForDialog, observerForDialog) = Signal<DialogContext, NoError>.pipe()
+        self.dialogSignal = signalForDialog
+        self.dialogObserver = observerForDialog
 
         super.init()
 
@@ -64,13 +65,14 @@ class SettingsViewModel: NSObject, CanSupplyDataContext, PresentDialog {
         // Set up the action to handle taps on the "Done" button.
         let doneRACAction = Action<Void, Void, NoError> {
             if self.strategyIndex.value == 2 && self.isForbiddenNumber() {
-                self.dialogObserver.sendNext(DialogContext(title: NSLocalizedString("You will lose", comment: ""),
-                        message: NSLocalizedString("With these settings you will definitely lose the next game", comment: ""),
-                        okButtonText: NSLocalizedString("I don't care", comment: ""),
-                        action: { self.doneObserver.sendNext() },
-                        hasCancel: true))
+                self.dialogObserver.send(value: DialogContext(title: NSLocalizedString("You will lose", comment: ""),
+                                                              message: NSLocalizedString("With these settings you will definitely lose the next game",
+                                                                                         comment: ""),
+                                                              okButtonText: NSLocalizedString("I don't care", comment: ""),
+                                                              action: { self.doneObserver.send(value: Void()) },
+                                                              hasCancel: true))
             } else {
-                self.doneObserver.sendNext()
+                self.doneObserver.send(value: Void())
             }
             return SignalProducer.empty
         }
@@ -79,8 +81,9 @@ class SettingsViewModel: NSObject, CanSupplyDataContext, PresentDialog {
 
     // MARK: Private
 
-    private var doneObserver: Observer<Void, NoError>
-    private var dialogObserver: Observer<DialogContext, NoError>
+    fileprivate var doneObserver: Observer<Void, NoError>
+
+    fileprivate var dialogObserver: Observer<DialogContext, NoError>
 
     /// - Returns: If the initialCount number is a "forbidden" number.
     func isForbiddenNumber() -> Bool {
@@ -88,7 +91,7 @@ class SettingsViewModel: NSObject, CanSupplyDataContext, PresentDialog {
         let currentInitialCount = Int(self.initialMatchSliderValue.value)
         let forbiddenOffset = Int(self.removeMaxSliderValue.value)+1
         let forbiddenNumber = ((currentInitialCount-1)/forbiddenOffset)*forbiddenOffset+1
-
+        
         return currentInitialCount == forbiddenNumber
     }
 }

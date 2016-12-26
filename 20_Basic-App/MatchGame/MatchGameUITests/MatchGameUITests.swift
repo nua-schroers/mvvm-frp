@@ -37,18 +37,18 @@ class MatchGameUITests: XCTestCase {
         let take3Button = app.buttons["Take 3"]
         XCTAssertTrue(take3Button.exists)
         XCTAssertTrue(take1Button.exists)
-        XCTAssertTrue(take3Button.enabled)
-        XCTAssertTrue(take1Button.enabled)
+        XCTAssertTrue(take3Button.isEnabled)
+        XCTAssertTrue(take1Button.isEnabled)
         take3Button.tap()
         take3Button.tap()
         take3Button.tap()
         take3Button.tap()
-        XCTAssertFalse(take3Button.enabled) // Verify that "Take 3" is now disabled.
-        XCTAssertTrue(take1Button.enabled)  // But "Take 1" is still enabled.
+        XCTAssertFalse(take3Button.isEnabled) // Verify that "Take 3" is now disabled.
+        XCTAssertTrue(take1Button.isEnabled)  // But "Take 1" is still enabled.
         take1Button.tap()
 
         // End the game.
-        let newGameButton = app.alerts["The game is over"].collectionViews.buttons["New game"]
+        let newGameButton = app.alerts["The game is over"].buttons["New game"]
         XCTAssertTrue(newGameButton.exists)
         newGameButton.tap()
 

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ReactiveSwift
 import ReactiveCocoa
 
 /// View model corresponding to the "Settings" screen.
@@ -32,7 +33,7 @@ class SettingsViewModel: NSObject, CanSupplyDataContext {
     // MARK: Controller -> VM communication
 
     /// Tap on the "Done" button.
-    var doneAction: CocoaAction!
+    var doneAction: CocoaAction<Any>!
 
     // MARK: Declarative init
 
@@ -55,13 +56,13 @@ class SettingsViewModel: NSObject, CanSupplyDataContext {
 
         // Set up the action to handle taps on the "Done" button.
         let doneRACAction = Action<Void, Void, NoError> {
-            self.doneObserver.sendNext()
+            self.doneObserver.send(value: Void())
             return SignalProducer.empty
         }
         self.doneAction = CocoaAction(doneRACAction, input: ())
     }
 
     // MARK: Private
-
-    private var doneObserver: Observer<Void, NoError>
+    
+    fileprivate var doneObserver: Observer<Void, NoError>
 }

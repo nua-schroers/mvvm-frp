@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ReactiveSwift
 import ReactiveCocoa
 
 /// This class exports the API of the data model to ReactiveCocoa-style mutable properties.
@@ -18,7 +19,7 @@ class ReactiveModel {
     // MARK: Public API
 
     /// The current move engine being used.
-    var strategy = MutableProperty(MatchModel.Strategy.Dumb)
+    var strategy = MutableProperty(MatchModel.Strategy.dumb)
 
     /// The current match count.
     var matchCount = MutableProperty(18)
@@ -40,13 +41,13 @@ class ReactiveModel {
         self.classicMatchModel = MatchModel()
         self.updateProperties()
 
-        self.strategy.producer.startWithNext { (newStrategy) in
+        self.strategy.producer.startWithValues { (newStrategy) in
             self.classicMatchModel.strategy = newStrategy
         }
-        self.initialCount.producer.startWithNext { (newInitialCount) in
+        self.initialCount.producer.startWithValues { (newInitialCount) in
             self.classicMatchModel.initialCount = newInitialCount
         }
-        self.removeMax.producer.startWithNext { (newRemoveMax) in
+        self.removeMax.producer.startWithValues { (newRemoveMax) in
             self.classicMatchModel.removeMax = newRemoveMax
             self.userLimit.value = self.classicMatchModel.userLimit()
         }
@@ -63,7 +64,7 @@ class ReactiveModel {
         return computerMove
     }
 
-    func performUserMove(move: Int) {
+    func performUserMove(_ move: Int) {
         self.classicMatchModel.performUserMove(move)
         self.updateProperties()
     }
@@ -71,12 +72,12 @@ class ReactiveModel {
     // MARK: Private
 
     /// The data model with the "old" API.
-    private var classicMatchModel: MatchModel
+    fileprivate var classicMatchModel: MatchModel
 
     /// Update the properties.
     ///
     /// This could be refactored with KVO, but it will neither make the code easier to read nor to understand.
-    private func updateProperties() {
+    fileprivate func updateProperties() {
         self.strategy.value     = self.classicMatchModel.strategy
         self.matchCount.value   = self.classicMatchModel.matchCount
         self.initialCount.value = self.classicMatchModel.initialCount

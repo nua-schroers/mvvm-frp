@@ -12,7 +12,7 @@ import Foundation
 protocol ReceiveDataContext: class {
 
     /// Receive the current settings.
-    func dataContextChanged(context: MatchDataContext)
+    func dataContextChanged(_ context: MatchDataContext)
 }
 
 /// Encapsulates the data context that is exchanged during screen transitions.

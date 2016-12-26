@@ -10,7 +10,7 @@ This set of files accompanies a presentation at the [Developer Week 2016](http:/
 
 Concepts of the presentation are the MVVM (model-view-view model) architecture and FRP (functional reactive programming). A sample app illustrates the concepts by giving different ways to implement a simple game using different architectures and paradigms.
 
-All sample codes are written in the Swift programming language version 2.2 and require Xcode 7.3 or higher. They have been tested on MacOS X (version 10.11.5) and iOS (version 9.3).
+All sample codes are written in the Swift programming language version 3 and require Xcode 8 or higher. They have been tested on MacOS X (version 10.11.6) and iOS (version 10.2).
 
 ## Directories
 

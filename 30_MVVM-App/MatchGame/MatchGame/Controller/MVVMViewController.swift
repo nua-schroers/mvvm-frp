@@ -14,24 +14,22 @@ import UIKit
 class MVVMViewController: UIViewController, CanPresentDialog {
 
     // MARK: CanPresentDialog
-    func presentDialog(title: String,
-                       message: String,
-                       okButtonText: String,
-                       action: () -> Void,
-                       hasCancel: Bool) {
-
+    internal func presentDialog(_ title: String,
+                                message: String,
+                                okButtonText: String,
+                                action: @escaping () -> Void,
+                                hasCancel: Bool) {
         let messageController = UIAlertController(title: title,
                                                   message: message,
-                                                  preferredStyle: .Alert)
+                                                  preferredStyle: .alert)
         let buttonResponse = UIAlertAction(title: okButtonText,
-                                           style: .Default) { (_) in
-                                               action()
-                                           }
+                                           style: .default) { (_) in
+                                            action()
+        }
         messageController.addAction(buttonResponse)
 
-        self.presentViewController(messageController,
-                                   animated: true,
-                                   completion: nil)
+        self.present(messageController,
+                     animated: true,
+                     completion: nil)
     }
-
 }

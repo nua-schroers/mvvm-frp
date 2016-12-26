@@ -24,7 +24,7 @@ class SettingsViewController: MVVMViewController, SettingsTakeAction {
         self.viewModel.delegate = self
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.viewModel.viewWillAppear()
     }
@@ -32,7 +32,7 @@ class SettingsViewController: MVVMViewController, SettingsTakeAction {
     /// Called by the main game screen view controller to configure this controller.
     ///
     /// This controller uses the information to configure the view model.
-    func configure(context: MatchDataContext,
+    func configure(_ context: MatchDataContext,
                    contextDelegate: ReceiveDataContext) {
         self.viewModel.configure(context, contextDelegate: contextDelegate)
     }
@@ -40,7 +40,7 @@ class SettingsViewController: MVVMViewController, SettingsTakeAction {
     // MARK: User Interface
 
     /// User taps the "Done" button.
-    @IBAction func userTapsDone(sender: AnyObject) {
+    @IBAction func userTapsDone(_ sender: AnyObject) {
         self.viewModel.userTapsDone()
     }
 
@@ -60,17 +60,17 @@ class SettingsViewController: MVVMViewController, SettingsTakeAction {
     @IBOutlet weak var strategySelector: UISegmentedControl!
 
     /// Reaction to moving the initial count slider.
-    @IBAction func userChangesInitialMatchCount(sender: AnyObject) {
+    @IBAction func userChangesInitialMatchCount(_ sender: AnyObject) {
         self.viewModel.userMovesInitialMatchCountSlider(self.initivalMatchCountSlider.value)
     }
 
     /// Reaction to moving the remove maximum slider.
-    @IBAction func userChangesRemoveMaxCount(sender: AnyObject) {
+    @IBAction func userChangesRemoveMaxCount(_ sender: AnyObject) {
         self.viewModel.userMovesRemoveMaxSlider(self.removeMaxSlider.value)
     }
 
     /// Reaction to picking a selection on the segmented control.
-    @IBAction func userSelectsSegmentedControl(sender: AnyObject) {
+    @IBAction func userSelectsSegmentedControl(_ sender: AnyObject) {
         self.viewModel.userSelectsStrategy(self.strategySelector.selectedSegmentIndex)
     }
 
@@ -78,7 +78,7 @@ class SettingsViewController: MVVMViewController, SettingsTakeAction {
 
     /// Trigger the screen transition back the main screen (handled by the primary game view controller).
     func returnToMain() {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
 
     /// Update the UI elements.
