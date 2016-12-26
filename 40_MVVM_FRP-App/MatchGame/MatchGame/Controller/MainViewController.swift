@@ -6,8 +6,9 @@
 //  Copyright © 2016 Wolfram Schroers. All rights reserved.
 //
 
-import ReactiveCocoa
 import UIKit
+import ReactiveSwift
+import ReactiveCocoa
 
 /// The view controller of the first screen responsible for the game.
 class MainViewController: MVVMViewController {
@@ -27,32 +28,32 @@ class MainViewController: MVVMViewController {
         self.moveReportLabel.rac_text <~ self.viewModel.moveReport
 
         // Wire up the buttons to the view model actions.
-        self.takeOneButton.addTarget(self.viewModel.takeOneAction, action: CocoaAction.selector, forControlEvents: .TouchUpInside)
-        self.takeTwoButton.addTarget(self.viewModel.takeTwoAction, action: CocoaAction.selector, forControlEvents: .TouchUpInside)
-        self.takeThreeButton.addTarget(self.viewModel.takeThreeAction, action: CocoaAction.selector, forControlEvents: .TouchUpInside)
-        self.infoButton.addTarget(self.viewModel.infoButtonAction, action: CocoaAction.selector, forControlEvents: .TouchUpInside)
+        self.takeOneButton.addTarget(self.viewModel.takeOneAction, action: CocoaAction<Any>.selector, for: .touchUpInside)
+        self.takeTwoButton.addTarget(self.viewModel.takeTwoAction, action: CocoaAction<Any>.selector, for: .touchUpInside)
+        self.takeThreeButton.addTarget(self.viewModel.takeThreeAction, action: CocoaAction<Any>.selector, for: .touchUpInside)
+        self.infoButton.addTarget(self.viewModel.infoButtonAction, action: CocoaAction<Any>.selector, for: .touchUpInside)
 
         // Wire up the button "enabled" states.
         self.takeTwoButton.rac_enabled <~ self.viewModel.buttonTwoEnabled
         self.takeThreeButton.rac_enabled <~ self.viewModel.buttonThreeEnabled
 
         // Wire up the match view activities (reset and remove matches with animation).
-        self.viewModel.resetMatchView.producer.startWithNext { (count) in
+        self.viewModel.resetMatchView.producer.startWithValues { (count) in
             self.matchPileView.setMatches(count)
         }
-        self.viewModel.removeFromMatchView.producer.skip(1).startWithNext { (count) in
+        self.viewModel.removeFromMatchView.producer.skip(first: 1).startWithValues { (count) in
             self.matchPileView.removeMatches(count)
         }
 
         // Handle screen transitions when requested.
-        let transitionSubscriber = Observer<Void, NoError>(next: { self.transitionToSettings() } )
+        let transitionSubscriber = Observer<Void, NoError>(value: { self.transitionToSettings() } )
         viewModel.transitionSignal.observe(transitionSubscriber)
 
         // Handle dialogs.
         self.commonBindings(self.viewModel)
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         // Direct method call when view appears.
@@ -84,17 +85,17 @@ class MainViewController: MVVMViewController {
 
     // MARK: Private
 
-    private func transitionToSettings() {
+    fileprivate func transitionToSettings() {
         // Instantiate the settings screen view controller and configure the UI transition.
-        let settingsController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("SettingsViewController") as! SettingsViewController
-        settingsController.modalPresentationStyle = .CurrentContext
-        settingsController.modalTransitionStyle = .FlipHorizontal
+        let settingsController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SettingsViewController") as! SettingsViewController
+        settingsController.modalPresentationStyle = .currentContext
+        settingsController.modalTransitionStyle = .flipHorizontal
 
         // Establish VM<->VM bindings.
         self.viewModel.configure(settingsController.viewModel)
 
         // Perform the transition.
-        self.presentViewController(settingsController,
+        self.present(settingsController,
                                    animated: true,
                                    completion: nil)
     }

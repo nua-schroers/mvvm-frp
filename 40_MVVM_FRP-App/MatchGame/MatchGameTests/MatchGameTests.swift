@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import ReactiveSwift
 import ReactiveCocoa
 @testable import MatchGame
 
@@ -34,7 +35,7 @@ class MatchGameTests: XCTestCase {
     /// Verify dumb engine.
     func testDumbEngine() {
         matchModel.initialCount = 10
-        matchModel.strategy = .Dumb
+        matchModel.strategy = .dumb
         matchModel.restart()
         matchModel.performUserMove(1)
 
@@ -45,7 +46,7 @@ class MatchGameTests: XCTestCase {
     /// Verify smart engine.
     func testSmartEngine() {
         matchModel.initialCount = 12
-        matchModel.strategy = .Smart
+        matchModel.strategy = .smart
         matchModel.restart()
         matchModel.performUserMove(1)
 
@@ -95,17 +96,17 @@ class MatchGameTests: XCTestCase {
         XCTAssertEqual(mainVM.gameState.value, "18 matches")
 
         // Play the game.
-        mainVM.takeThreeAction.execute(nil)
+        mainVM.takeThreeAction.execute(Void())
         XCTAssertEqual(mainVM.gameState.value, "14 matches")
         XCTAssertEqual(mainVM.moveReport.value, "I remove 1 match")
-        mainVM.takeThreeAction.execute(nil)
-        mainVM.takeThreeAction.execute(nil)
-        mainVM.takeThreeAction.execute(nil)
+        mainVM.takeThreeAction.execute(Void())
+        mainVM.takeThreeAction.execute(Void())
+        mainVM.takeThreeAction.execute(Void())
         XCTAssertEqual(mainVM.gameState.value, "2 matches")
         XCTAssertNil(dialogContext)
 
         // End the game (user wins).
-        mainVM.takeOneAction.execute(nil)
+        mainVM.takeOneAction.execute(Void())
         XCTAssertNotNil(dialogContext)
         XCTAssertEqual(dialogContext!.title, "The game is over")
         XCTAssertEqual(dialogContext!.message, "I have lost")

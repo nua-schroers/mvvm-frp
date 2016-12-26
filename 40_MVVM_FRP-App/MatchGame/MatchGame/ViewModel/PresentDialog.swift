@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ReactiveSwift
 import ReactiveCocoa
 
 /// Container describing a dialog handled by `PresentDialog`.
@@ -16,7 +17,7 @@ struct DialogContext {
     init(title: String,
          message: String,
          okButtonText: String,
-         action: () -> Void = {},
+         action: @escaping () -> Void = {},
          hasCancel: Bool = false) {
         self.title = title
         self.message = message

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ReactiveSwift
 import ReactiveCocoa
 
 /// View controller of the second screen responsible for the settings.
@@ -33,17 +34,17 @@ class SettingsViewController: MVVMViewController {
         self.viewModel.strategyIndex <~ self.strategySelector.rac_segmentedControlValueChangedProducer
 
         // Set up the action for the "Done" button.
-        self.doneButton.addTarget(self.viewModel.doneAction, action: CocoaAction.selector, forControlEvents: .TouchUpInside)
+        self.doneButton.addTarget(self.viewModel.doneAction, action: CocoaAction<Any>.selector, for: .touchUpInside)
 
         // Set up response for dismissing the settings screen.
-        let doneSubscriber = Observer<Void, NoError>(next: { self.dismissViewControllerAnimated(true, completion: nil) } )
+        let doneSubscriber = Observer<Void, NoError>(value: { self.dismiss(animated: true, completion: nil) } )
         viewModel.doneSignal.observe(doneSubscriber)
 
         // Handle dialogs.
         self.commonBindings(self.viewModel)
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         // Set up initial values when the view appears (this is a little "old-style").
