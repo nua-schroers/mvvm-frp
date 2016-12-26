@@ -1,10 +1,10 @@
 # MVVM and FRP: Perfect architectures for mobile development?
 
-![Swift 2.2.x](https://img.shields.io/badge/Swift-2.2.x-orange.svg) ![platforms](https://img.shields.io/badge/platforms-iOS-lightgrey.svg) [![GitHub license](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/nua-schroers/mvvm-frp/master/LICENSE) ![Travis build](https://travis-ci.org/nua-schroers/mvvm-frp.svg?=master)
+![Swift 3.0.x](https://img.shields.io/badge/Swift-3.0.x-orange.svg) ![platforms](https://img.shields.io/badge/platforms-iOS-lightgrey.svg) [![GitHub license](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/nua-schroers/mvvm-frp/master/LICENSE) ![Travis build](https://travis-ci.org/nua-schroers/mvvm-frp.svg?=master)
 
 What every developer should know about MVVM and FRP.
 
-This set of files accompanies a presentation at the [Developer Week 2016](http://www.developer-week.de) conference, Nuremberg, Germany. See http://dwx2016.nua-schroers.de for further information (in German).
+This set of files accompanies a presentation at the [Developer Week 2016](http://www.developer-week.de) conference, Nuremberg, Germany. See http://dwx2016.nua-schroers.de for further information (in German). *It has been updated for compatibility with Swift 3.*
 
 ## The match game
 
@@ -22,6 +22,8 @@ The following directories are used:
 * `40_MVVM_FRP-App/Matchgame` : The iPhone app using the MVVM architecture and FRP with [ReactiveCocoa](https://github.com/ReactiveCocoa/ReactiveCocoa/).
 * `41_MVVM_FRP-App_ExplicitSignals` : Variant of the MVVM/FRP app which illustrates how to use, map and combine signals to enable/disable the "Take 2" button.
 * `42_MVVM_FRP-App_WarningDialog` : Variant of the MVVM/FRP app which introduces a behavior/workflow change and displays a dialog in certain situations when leaving the settings screen.
+
+*NOTE:* Currently, the MVVM-FRP app uses a pre-release version of the ReactiveCocoa library. This code may change since the library is not yet API stable. This is necessary, because Swift 3 is not (yet) supported in a stable release.
 
 ## Installation and use
 
