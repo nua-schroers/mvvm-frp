@@ -1,6 +1,6 @@
 # MVVM and FRP: Perfect architectures for mobile development?
 
-![Swift 3.0.x](https://img.shields.io/badge/Swift-3.0.x-orange.svg) ![platforms](https://img.shields.io/badge/platforms-iOS-lightgrey.svg) [![GitHub license](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/nua-schroers/mvvm-frp/master/LICENSE) ![Travis build](https://travis-ci.org/nua-schroers/mvvm-frp.svg?=master)
+![Swift 3.1.x](https://img.shields.io/badge/Swift-3.1.x-orange.svg) ![platforms](https://img.shields.io/badge/platforms-iOS-lightgrey.svg) [![GitHub license](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/nua-schroers/mvvm-frp/master/LICENSE) ![Travis build](https://travis-ci.org/nua-schroers/mvvm-frp.svg?=master)
 
 What every developer should know about MVVM and FRP.
 
@@ -39,7 +39,7 @@ to install the necessary dependencies.
 
 Documentation and associated written materials are subject to the [CC BY-NC-SA 4.0 license](http://creativecommons.org/licenses/by-nc-sa/4.0/ "CC BY-NC-SA 4,0 license").
 
-The accompanying software is copyright (c) 2012-2016 Dr. Wolfram Schroers, [Numerik & Analyse Schroers](http://nua-schroers.de) and subject to the conditions in the file `LICENSE`.
+The accompanying software is copyright (c) 2012-2017 Dr. Wolfram Schroers, [Numerik & Analyse Schroers](http://nua-schroers.de) and subject to the conditions in the file `LICENSE`.
 
 The launch image and the icons are modified copies of a photo by Derek Gavey which has been licensed under the
 [CC-BY 2.0 license](https://creativecommons.org/licenses/by/2.0/ "CC-BY 2.0 license"). The photo is available on [Flikr](https://www.flickr.com/photos/derekgavey/6068317482/in/photolist-afeHnu-dMRh3f-cMzkD7-anpD7m-cMzmb1-cMzkSC-cMzkL1-7JK2PQ-eUFjFB-6ZQjg-eMHzom-k1Zee3-aMFVAe-8L2DU7-nB2Gwq-ESkxeS-dMFLbJ-838DFC-dsaPqJ-9HzTP4-6V5jtx-6JPnvN-okwZka-DJk-pWdwJK-8cJ4gS-ozmrHo-krczSP-ikFion-9HgNMm-bHk1Pc-7JF7dx-yZs8f-6k4EGJ-6msS1R-6AK9Vu-k6iRYW-jAEaKT-6AF3Sa-btkq1c-6AF2cv-6AKd2h-6AK8Qu-dz4cat-6G73ii-5Syqj7-pZFQKz-onzJgm-f7UZ3i-6AF1X6 "Flikr link").
