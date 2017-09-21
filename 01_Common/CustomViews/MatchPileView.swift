@@ -73,7 +73,7 @@ class MatchPileView: UIView {
         // Actual number of matches to remove.
         let actualNumber = (matchNumber > self.visibleMatches) ? self.visibleMatches : matchNumber;
 
-        let rotation = CGAffineTransform(rotationAngle: CGFloat(M_PI / 2))
+        let rotation = CGAffineTransform(rotationAngle: CGFloat(Double.pi / 2))
         for i in 1...actualNumber {
             let lastIndex = self.visibleMatches - i
             let lastVisibleMatch = oldMatches[lastIndex]
