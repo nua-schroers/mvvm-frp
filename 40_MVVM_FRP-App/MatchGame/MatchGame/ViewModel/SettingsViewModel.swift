@@ -64,5 +64,5 @@ class SettingsViewModel: NSObject, CanSupplyDataContext {
 
     // MARK: Private
     
-    fileprivate var doneObserver: Observer<Void, NoError>
+    fileprivate var doneObserver: Signal<Void, NoError>.Observer
 }
