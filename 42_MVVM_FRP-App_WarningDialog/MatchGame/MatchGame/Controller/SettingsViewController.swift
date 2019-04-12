@@ -25,19 +25,19 @@ class SettingsViewController: MVVMViewController {
 
         // Data binding: wire up the label texts, slider values and segmented control setting.
         self.initialMatchCountLabel.rac_text <~ self.viewModel.initialMatchSetting
-        self.viewModel.initialMatchSliderValue <~ self.initialMatchCountSlider.rac_sliderValueChangedProducer
+        self.viewModel.initialMatchSliderValue <~ self.initialMatchCountSlider.reactive.values
 
         self.removeMaxLabel.rac_text <~ self.viewModel.removeMaxSetting
-        self.viewModel.removeMaxSliderValue <~ self.removeMaxSlider.rac_sliderValueChangedProducer
+        self.viewModel.removeMaxSliderValue <~ self.removeMaxSlider.reactive.values
 
         self.strategySelector.rac_selectedSegmentIndex <~ self.viewModel.strategyIndex
-        self.viewModel.strategyIndex <~ self.strategySelector.rac_segmentedControlValueChangedProducer
+        self.viewModel.strategyIndex <~ self.strategySelector.reactive.selectedSegmentIndexes
 
         // Set up the action for the "Done" button.
         self.doneButton.addTarget(self.viewModel.doneAction, action: CocoaAction<Any>.selector, for: .touchUpInside)
 
         // Set up response for dismissing the settings screen.
-        let doneSubscriber = Observer<Void, NoError>(value: { self.dismiss(animated: true, completion: nil) } )
+        let doneSubscriber = Signal<Void, NoError>.Observer(value: { self.dismiss(animated: true, completion: nil) } )
         viewModel.doneSignal.observe(doneSubscriber)
 
         // Handle dialogs.

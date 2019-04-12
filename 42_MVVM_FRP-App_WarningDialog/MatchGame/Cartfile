@@ -1,2 +1,2 @@
-github "ReactiveCocoa/ReactiveCocoa" "5.0.4"
+github "ReactiveCocoa/ReactiveCocoa" ~> 8.0
 

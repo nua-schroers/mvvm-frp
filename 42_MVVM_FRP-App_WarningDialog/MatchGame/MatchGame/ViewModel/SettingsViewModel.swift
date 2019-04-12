@@ -81,9 +81,9 @@ class SettingsViewModel: NSObject, CanSupplyDataContext, PresentDialog {
 
     // MARK: Private
 
-    fileprivate var doneObserver: Observer<Void, NoError>
+    fileprivate var doneObserver: Signal<Void, NoError>.Observer
 
-    fileprivate var dialogObserver: Observer<DialogContext, NoError>
+    fileprivate var dialogObserver: Signal<DialogContext, NoError>.Observer
 
     /// - Returns: If the initialCount number is a "forbidden" number.
     func isForbiddenNumber() -> Bool {
@@ -91,7 +91,7 @@ class SettingsViewModel: NSObject, CanSupplyDataContext, PresentDialog {
         let currentInitialCount = Int(self.initialMatchSliderValue.value)
         let forbiddenOffset = Int(self.removeMaxSliderValue.value)+1
         let forbiddenNumber = ((currentInitialCount-1)/forbiddenOffset)*forbiddenOffset+1
-        
+
         return currentInitialCount == forbiddenNumber
     }
 }
