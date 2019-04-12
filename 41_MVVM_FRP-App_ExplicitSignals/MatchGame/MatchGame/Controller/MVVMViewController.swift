@@ -17,8 +17,8 @@ class MVVMViewController: UIViewController {
 
     /// Establish bindings common to all view models (currently only dialog handling).
     func commonBindings(_ viewModel: PresentDialog?) {
-        if let canPresentDialog = viewModel as PresentDialog! {
-            let dialogSubscriber = Observer<DialogContext, NoError>(value: { self.presentDialog($0) } )
+        if let canPresentDialog = viewModel {
+            let dialogSubscriber = Signal<DialogContext, NoError>.Observer(value: { self.presentDialog($0) } )
             canPresentDialog.dialogSignal.observe(dialogSubscriber)
         }
     }

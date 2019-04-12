@@ -87,7 +87,7 @@ class MatchGameTests: XCTestCase {
 
         // Observe the dialog context.
         var dialogContext: DialogContext?
-        mainVM.dialogSignal.observe { (dialogEvent: Event<DialogContext, NoError>) in
+        mainVM.dialogSignal.observe { dialogEvent in
             dialogContext = dialogEvent.value
         }
 

@@ -1,16 +1,16 @@
 # MVVM and FRP: Perfect architectures for mobile development?
 
-![Swift 3.1.x](https://img.shields.io/badge/Swift-3.1.x-orange.svg) ![platforms](https://img.shields.io/badge/platforms-iOS-lightgrey.svg) [![GitHub license](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/nua-schroers/mvvm-frp/master/LICENSE) ![Travis build](https://travis-ci.org/nua-schroers/mvvm-frp.svg?=master)
+![Swift 4.2](https://img.shields.io/badge/Swift-4.2-orange.svg) ![platforms](https://img.shields.io/badge/platforms-iOS-lightgrey.svg) [![GitHub license](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/nua-schroers/mvvm-frp/master/LICENSE) ![Travis build](https://travis-ci.org/nua-schroers/mvvm-frp.svg?=master)
 
 What every developer should know about MVVM and FRP.
 
-This set of files accompanies a presentation at the [Developer Week 2016](http://www.developer-week.de) conference, Nuremberg, Germany. See http://dwx2016.nua-schroers.de for further information (in German). *It has been updated for compatibility with Swift 3.*
+This set of files accompanies a presentation at the [Developer Week 2016](http://www.developer-week.de) conference, Nuremberg, Germany. See http://dwx2016.nua-schroers.de for further information (in German). *It has been updated for compatibility with Swift 4.2.*
 
 ## The match game
 
 Concepts of the presentation are the MVVM (model-view-view model) architecture and FRP (functional reactive programming). A sample app illustrates the concepts by giving different ways to implement a simple game using different architectures and paradigms.
 
-All sample codes are written in the Swift programming language version 3 and require Xcode 8 or higher. They have been tested on MacOS X (version 10.11.6) and iOS (version 10.2).
+All sample codes are written in the Swift programming language version 4.2 and require Xcode 10.1 or higher. They have been tested on MacOS X (version 10.14.4) and iOS (version 12.1).
 
 ## Directories
 
@@ -33,7 +33,7 @@ For the MVVM-FRP app in addition [carthage](https://github.com/Carthage/Carthage
 
     cd 40_MVVM_FRP-App/Matchgame/ ; carthage update --platform iOS
 
-to install the necessary dependencies.
+to install the necessary dependencies. *NOTE Currently (April 2019), it appears to be impossible to build ReactiveCocoa with Xcode 10.2! See this ticket for updates: <https://github.com/ReactiveX/RxSwift/issues/1907>.*
 
 ## License and attribution
 

@@ -77,31 +77,11 @@ extension UISegmentedControl {
     }
 }
 
-extension UISlider {
-    public var rac_sliderValueChangedProducer: SignalProducer<Float, NoError> {
-        let sliderSignalProducer = self.reactive.controlEvents(.valueChanged)
-        return SignalProducer<Float, NoError>(sliderSignalProducer.flatMapError { error in
-            return SignalProducer<UISlider, NoError>.empty
-            }
-            .map { slider in Float(slider.value) })
-    }
-}
-
-extension UISegmentedControl {
-    public var rac_segmentedControlValueChangedProducer: SignalProducer<Int, NoError> {
-        let segmentedControlSignalProducer = self.reactive.controlEvents(.valueChanged)
-        return SignalProducer<Int, NoError>(segmentedControlSignalProducer.flatMapError { error in
-            return SignalProducer<UISegmentedControl, NoError>.empty
-            }
-            .map { segmentedControl in segmentedControl.selectedSegmentIndex })
-    }
-}
-
 extension UITextField {
     public var rac_text: MutableProperty<String> {
         return lazyAssociatedProperty(self, key: &AssociationKey.text) {
 
-            self.addTarget(self, action: #selector(self.changed), for: UIControlEvents.editingChanged)
+            self.addTarget(self, action: #selector(self.changed), for: UIControl.Event.editingChanged)
 
             let property = MutableProperty<String>(self.text ?? "")
             property.producer
@@ -113,7 +93,7 @@ extension UITextField {
         }
     }
 
-    func changed() {
+    @IBAction func changed() {
         rac_text.value = self.text ?? ""
     }
 }

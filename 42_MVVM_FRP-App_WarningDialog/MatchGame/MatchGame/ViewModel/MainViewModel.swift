@@ -116,11 +116,11 @@ class MainViewModel: NSObject, PresentDialog {
             self.userMove(1)
             return SignalProducer.empty
         }
-        let takeTwoRACAction = Action<Void, Void, NoError>(enabledIf: self.buttonTwoEnabled, {
+        let takeTwoRACAction = Action<Void, Void, NoError>(enabledIf: self.buttonTwoEnabled, execute: {
             self.userMove(2)
             return SignalProducer.empty
         })
-        let takeThreeRACAction = Action<Void, Void, NoError>(enabledIf: self.buttonThreeEnabled, {
+        let takeThreeRACAction = Action<Void, Void, NoError>(enabledIf: self.buttonThreeEnabled, execute: {
             self.userMove(3)
             return SignalProducer.empty
         })
@@ -136,8 +136,8 @@ class MainViewModel: NSObject, PresentDialog {
 
     // MARK: Internal helpers
 
-    fileprivate var dialogObserver: Observer<DialogContext, NoError>
-    fileprivate var transitionObserver: Observer<Void, NoError>
+    fileprivate var dialogObserver: Signal<DialogContext, NoError>.Observer
+    fileprivate var transitionObserver: Signal<Void, NoError>.Observer
 
     /// Return a number of matches with proper unit.
     fileprivate func prettyMatchString(_ count:Int) -> String {
