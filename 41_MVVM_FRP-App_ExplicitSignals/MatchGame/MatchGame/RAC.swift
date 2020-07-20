@@ -17,9 +17,6 @@ import ReactiveSwift
 import ReactiveCocoa
 import UIKit
 
-import enum Result.NoError
-public typealias NoError = Result.NoError
-
 struct AssociationKey {
     static var hidden: UInt8 = 1
     static var alpha: UInt8 = 2
@@ -46,16 +43,6 @@ func lazyMutableProperty<T>(_ host: AnyObject, key: UnsafeRawPointer, setter: @e
                 setter(newValue)
         }
         return property
-    }
-}
-
-extension UIView {
-    public var rac_alpha: MutableProperty<CGFloat> {
-        return lazyMutableProperty(self, key: &AssociationKey.alpha, setter: { self.alpha = $0 }, getter: { self.alpha  })
-    }
-
-    public var rac_hidden: MutableProperty<Bool> {
-        return lazyMutableProperty(self, key: &AssociationKey.hidden, setter: { self.isHidden = $0 }, getter: { self.isHidden  })
     }
 }
 

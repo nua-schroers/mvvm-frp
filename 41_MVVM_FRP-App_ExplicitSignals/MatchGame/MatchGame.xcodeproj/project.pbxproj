@@ -24,11 +24,9 @@
 		6B8A97C91CFAB06D00E1D6E2 /* SmartEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BCF34281CF8563200BE7594 /* SmartEngine.swift */; };
 		6B8A97CA1CFAB07000E1D6E2 /* WildEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BCF34291CF8563200BE7594 /* WildEngine.swift */; };
 		6B9649451CFC4E9C00D2C019 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B9649441CFC4E9C00D2C019 /* ReactiveCocoa.framework */; };
-		6B9649471CFC4EA700D2C019 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B9649461CFC4EA700D2C019 /* Result.framework */; };
 		6B96494A1CFC57E200D2C019 /* RAC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9649491CFC57E200D2C019 /* RAC.swift */; };
 		6B96494C1CFC59DE00D2C019 /* ReactiveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B96494B1CFC59DE00D2C019 /* ReactiveModel.swift */; };
 		6BA0177D1CFD540200B0F8D0 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B9649441CFC4E9C00D2C019 /* ReactiveCocoa.framework */; };
-		6BA0177E1CFD540D00B0F8D0 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B9649461CFC4EA700D2C019 /* Result.framework */; };
 		6BA017801CFD544F00B0F8D0 /* RAC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9649491CFC57E200D2C019 /* RAC.swift */; };
 		6BA017811CFD546C00B0F8D0 /* ReactiveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B96494B1CFC59DE00D2C019 /* ReactiveModel.swift */; };
 		6BA017831CFD54E100B0F8D0 /* CanSupplyDataContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA017821CFD54E100B0F8D0 /* CanSupplyDataContext.swift */; };
@@ -100,7 +98,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6B14F89D1E10FBDF0074503C /* ReactiveSwift.framework in Frameworks */,
-				6B9649471CFC4EA700D2C019 /* Result.framework in Frameworks */,
 				6B9649451CFC4E9C00D2C019 /* ReactiveCocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -109,7 +106,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6BA0177E1CFD540D00B0F8D0 /* Result.framework in Frameworks */,
 				6BA0177D1CFD540200B0F8D0 /* ReactiveCocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -273,23 +269,23 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Wolfram Schroers";
 				TargetAttributes = {
 					6BA634831CF7471A00ECA7BF = {
 						CreatedOnToolsVersion = 7.3.1;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1160;
 					};
 					6BA634971CF7471A00ECA7BF = {
 						CreatedOnToolsVersion = 7.3.1;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1160;
 						TestTargetID = 6BA634831CF7471A00ECA7BF;
 					};
 				};
 			};
 			buildConfigurationList = 6BA6347F1CF7471A00ECA7BF /* Build configuration list for PBXProject "MatchGame" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -333,7 +329,6 @@
 			files = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/Result.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ReactiveCocoa.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ReactiveSwift.framework",
 			);
@@ -349,7 +344,6 @@
 			files = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/Result.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ReactiveCocoa.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ReactiveSwift.framework",
 			);
@@ -455,7 +449,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = NO;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
@@ -489,11 +483,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = "";
 			};
 			name = Debug;
 		};
@@ -510,7 +505,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = NO;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
@@ -538,10 +533,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = "";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -559,7 +555,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "de.nua-schroers.MatchGame";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -576,7 +572,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "de.nua-schroers.MatchGame";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -593,7 +589,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "de.nua-schroers.MatchGameTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MatchGame.app/MatchGame";
 			};
 			name = Debug;
@@ -611,7 +607,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "de.nua-schroers.MatchGameTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MatchGame.app/MatchGame";
 			};
 			name = Release;

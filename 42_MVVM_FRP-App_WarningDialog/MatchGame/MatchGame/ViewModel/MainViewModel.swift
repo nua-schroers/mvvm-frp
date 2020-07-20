@@ -39,10 +39,10 @@ class MainViewModel: NSObject, PresentDialog {
     var buttonThreeEnabled = MutableProperty(false)
 
     /// Request to present a dialog.
-    var dialogSignal: Signal<DialogContext, NoError>
+    var dialogSignal: Signal<DialogContext, Never>
 
     /// Request to transition to the settings screen.
-    var transitionSignal: Signal<Void, NoError>
+    var transitionSignal: Signal<Void, Never>
 
     // MARK: Controller -> VM communication
 
@@ -95,12 +95,12 @@ class MainViewModel: NSObject, PresentDialog {
     /// Designated initializer. Note that the implementation is mostly declarative!
     override init() {
         // Set up capability to submit dialog requests.
-        let (signalForDialog, observerForDialog) = Signal<DialogContext, NoError>.pipe()
+        let (signalForDialog, observerForDialog) = Signal<DialogContext, Never>.pipe()
         self.dialogSignal = signalForDialog
         self.dialogObserver = observerForDialog
 
         // Set up capability to submit screen transition request.
-        let (signalForTransition, observerForTransition) = Signal<Void, NoError>.pipe()
+        let (signalForTransition, observerForTransition) = Signal<Void, Never>.pipe()
         self.transitionSignal = signalForTransition
         self.transitionObserver = observerForTransition
 
@@ -112,19 +112,19 @@ class MainViewModel: NSObject, PresentDialog {
         self.buttonThreeEnabled <~ self.reactiveModel.userLimit.producer.map { return $0 > 2 }
 
         // Set up button responses.
-        let takeOneRACAction = Action<Void, Void, NoError> {
+        let takeOneRACAction = Action<Void, Void, Never> {
             self.userMove(1)
             return SignalProducer.empty
         }
-        let takeTwoRACAction = Action<Void, Void, NoError>(enabledIf: self.buttonTwoEnabled, execute: {
+        let takeTwoRACAction = Action<Void, Void, Never>(enabledIf: self.buttonTwoEnabled, execute: {
             self.userMove(2)
             return SignalProducer.empty
         })
-        let takeThreeRACAction = Action<Void, Void, NoError>(enabledIf: self.buttonThreeEnabled, execute: {
+        let takeThreeRACAction = Action<Void, Void, Never>(enabledIf: self.buttonThreeEnabled, execute: {
             self.userMove(3)
             return SignalProducer.empty
         })
-        let takeInfoRACAction = Action<Void, Void, NoError> {
+        let takeInfoRACAction = Action<Void, Void, Never> {
             self.transitionObserver.send(value: Void())
             return SignalProducer.empty
         }
@@ -136,8 +136,8 @@ class MainViewModel: NSObject, PresentDialog {
 
     // MARK: Internal helpers
 
-    fileprivate var dialogObserver: Signal<DialogContext, NoError>.Observer
-    fileprivate var transitionObserver: Signal<Void, NoError>.Observer
+    fileprivate var dialogObserver: Signal<DialogContext, Never>.Observer
+    fileprivate var transitionObserver: Signal<Void, Never>.Observer
 
     /// Return a number of matches with proper unit.
     fileprivate func prettyMatchString(_ count:Int) -> String {

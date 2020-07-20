@@ -1,21 +1,20 @@
-# This is actually a Swift-project.
-language: objective-c
-osx_image: xcode10.1
+language: swift
+osx_image: xcode11.6
 
 before_install:
 - xcrun simctl list # list devices
 
 install:
-- gem install xcpretty --no-rdoc --no-ri --no-document --quiet
+- gem install xcpretty --quiet
 - pushd 40_MVVM_FRP-App/MatchGame/ ; carthage update --platform iOS ; popd
 
 script:
 - set -o pipefail
 - xcodebuild -project 10_Commandline-App/Matchgame/Matchgame.xcodeproj -scheme Matchgame build | xcpretty -c
-- xcodebuild -project 20_Basic-App/Matchgame/Matchgame.xcodeproj -scheme MatchGame CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -destination "platform=iOS Simulator,OS=12.1,name=iPhone SE" clean build | xcpretty -c || true
-- xcodebuild -project 20_Basic-App/Matchgame/Matchgame.xcodeproj -scheme MatchGame CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -destination "platform=iOS Simulator,OS=12.1,name=iPhone SE" test | xcpretty -c
-- xcodebuild -project 30_MVVM-App/Matchgame/Matchgame.xcodeproj -scheme MatchGame CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -destination "platform=iOS Simulator,OS=12.1,name=iPhone SE" clean build | xcpretty -c || true
-- xcodebuild -project 30_MVVM-App/Matchgame/Matchgame.xcodeproj -scheme MatchGame CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -destination "platform=iOS Simulator,OS=12.1,name=iPhone SE" test | xcpretty -c
-- xcodebuild -project 40_MVVM_FRP-App/Matchgame/Matchgame.xcodeproj -scheme MatchGame CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -destination "platform=iOS Simulator,OS=12.1,name=iPhone SE" clean build | xcpretty -c || true
-- xcodebuild -project 40_MVVM_FRP-App/Matchgame/Matchgame.xcodeproj -scheme MatchGame CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -destination "platform=iOS Simulator,OS=12.1,name=iPhone SE" test | xcpretty -c
+- xcodebuild -project 20_Basic-App/Matchgame/Matchgame.xcodeproj -scheme MatchGame CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -destination "platform=iOS Simulator,OS=13.6,name=iPhone 11" clean build | xcpretty -c || true
+- xcodebuild -project 20_Basic-App/Matchgame/Matchgame.xcodeproj -scheme MatchGame CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -destination "platform=iOS Simulator,OS=13.6,name=iPhone 11" test | xcpretty -c
+- xcodebuild -project 30_MVVM-App/Matchgame/Matchgame.xcodeproj -scheme MatchGame CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -destination "platform=iOS Simulator,OS=13.6,name=iPhone 11" clean build | xcpretty -c || true
+- xcodebuild -project 30_MVVM-App/Matchgame/Matchgame.xcodeproj -scheme MatchGame CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -destination "platform=iOS Simulator,OS=13.6,name=iPhone 11" test | xcpretty -c
+- xcodebuild -project 40_MVVM_FRP-App/Matchgame/Matchgame.xcodeproj -scheme MatchGame CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -destination "platform=iOS Simulator,OS=13.6,name=iPhone 11" clean build | xcpretty -c || true
+- xcodebuild -project 40_MVVM_FRP-App/Matchgame/Matchgame.xcodeproj -scheme MatchGame CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -destination "platform=iOS Simulator,OS=13.6,name=iPhone 11" test | xcpretty -c
 

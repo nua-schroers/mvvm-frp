@@ -4,4 +4,5 @@ Podfile.lock
 Pods
 Carthage
 .idea
+xcshareddata
 

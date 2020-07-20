@@ -46,7 +46,7 @@ class MainViewController: MVVMViewController {
         }
 
         // Handle screen transitions when requested.
-        let transitionSubscriber = Signal<Void, NoError>.Observer(value: { self.transitionToSettings() } )
+        let transitionSubscriber = Signal<Void, Never>.Observer(value: { self.transitionToSettings() } )
         viewModel.transitionSignal.observe(transitionSubscriber)
 
         // Handle dialogs.

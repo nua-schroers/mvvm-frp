@@ -22,10 +22,10 @@ class SettingsViewModel: NSObject, CanSupplyDataContext, PresentDialog {
     var removeMaxSetting = MutableProperty("")
 
     /// Request to handle the "Done" button.
-    var doneSignal: Signal<Void, NoError>
+    var doneSignal: Signal<Void, Never>
 
     /// Request to present a dialog.
-    var dialogSignal: Signal<DialogContext, NoError>
+    var dialogSignal: Signal<DialogContext, Never>
 
     // MARK: CanSupplyDataContext, VM -> VM communication
 
@@ -43,12 +43,12 @@ class SettingsViewModel: NSObject, CanSupplyDataContext, PresentDialog {
     /// Designated initializer.
     override init() {
         // Set up the capability for requests to close the settings screen.
-        let (signalForDone, observerForDone) = Signal<Void, NoError>.pipe()
+        let (signalForDone, observerForDone) = Signal<Void, Never>.pipe()
         self.doneSignal = signalForDone
         self.doneObserver = observerForDone
 
         // Set up capability to submit dialog requests.
-        let (signalForDialog, observerForDialog) = Signal<DialogContext, NoError>.pipe()
+        let (signalForDialog, observerForDialog) = Signal<DialogContext, Never>.pipe()
         self.dialogSignal = signalForDialog
         self.dialogObserver = observerForDialog
 
@@ -63,7 +63,7 @@ class SettingsViewModel: NSObject, CanSupplyDataContext, PresentDialog {
         }
 
         // Set up the action to handle taps on the "Done" button.
-        let doneRACAction = Action<Void, Void, NoError> {
+        let doneRACAction = Action<Void, Void, Never> {
             if self.strategyIndex.value == 2 && self.isForbiddenNumber() {
                 self.dialogObserver.send(value: DialogContext(title: NSLocalizedString("You will lose", comment: ""),
                                                               message: NSLocalizedString("With these settings you will definitely lose the next game",
@@ -81,9 +81,9 @@ class SettingsViewModel: NSObject, CanSupplyDataContext, PresentDialog {
 
     // MARK: Private
 
-    fileprivate var doneObserver: Signal<Void, NoError>.Observer
+    fileprivate var doneObserver: Signal<Void, Never>.Observer
 
-    fileprivate var dialogObserver: Signal<DialogContext, NoError>.Observer
+    fileprivate var dialogObserver: Signal<DialogContext, Never>.Observer
 
     /// - Returns: If the initialCount number is a "forbidden" number.
     func isForbiddenNumber() -> Bool {
