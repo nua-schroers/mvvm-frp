@@ -37,7 +37,7 @@ class SettingsViewController: MVVMViewController {
         self.doneButton.addTarget(self.viewModel.doneAction, action: CocoaAction<Any>.selector, for: .touchUpInside)
 
         // Set up response for dismissing the settings screen.
-        let doneSubscriber = Signal<Void, NoError>.Observer(value: { self.dismiss(animated: true, completion: nil) } )
+        let doneSubscriber = Signal<Void, Never>.Observer(value: { self.dismiss(animated: true, completion: nil) } )
         viewModel.doneSignal.observe(doneSubscriber)
 
         // Handle dialogs.

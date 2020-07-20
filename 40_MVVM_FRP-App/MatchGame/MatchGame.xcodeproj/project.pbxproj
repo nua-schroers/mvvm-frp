@@ -278,11 +278,11 @@
 				TargetAttributes = {
 					6BA634831CF7471A00ECA7BF = {
 						CreatedOnToolsVersion = 7.3.1;
-						LastSwiftMigration = "";
+						LastSwiftMigration = 1160;
 					};
 					6BA634971CF7471A00ECA7BF = {
 						CreatedOnToolsVersion = 7.3.1;
-						LastSwiftMigration = "";
+						LastSwiftMigration = 1160;
 						TestTargetID = 6BA634831CF7471A00ECA7BF;
 					};
 				};
@@ -561,7 +561,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "de.nua-schroers.MatchGame";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -578,7 +578,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "de.nua-schroers.MatchGame";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -595,7 +595,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "de.nua-schroers.MatchGameTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MatchGame.app/MatchGame";
 			};
 			name = Debug;
@@ -613,7 +613,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "de.nua-schroers.MatchGameTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MatchGame.app/MatchGame";
 			};
 			name = Release;

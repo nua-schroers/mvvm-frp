@@ -22,7 +22,7 @@ class SettingsViewModel: NSObject, CanSupplyDataContext {
     var removeMaxSetting = MutableProperty("")
 
     /// Request to handle the "Done" button.
-    var doneSignal: Signal<Void, NoError>
+    var doneSignal: Signal<Void, Never>
 
     // MARK: CanSupplyDataContext, VM -> VM communication
 
@@ -40,7 +40,7 @@ class SettingsViewModel: NSObject, CanSupplyDataContext {
     /// Designated initializer.
     override init() {
         // Set up the capability for requests to close the settings screen.
-        let (signalForDone, observerForDone) = Signal<Void, NoError>.pipe()
+        let (signalForDone, observerForDone) = Signal<Void, Never>.pipe()
         self.doneSignal = signalForDone
         self.doneObserver = observerForDone
 
@@ -55,7 +55,7 @@ class SettingsViewModel: NSObject, CanSupplyDataContext {
         }
 
         // Set up the action to handle taps on the "Done" button.
-        let doneRACAction = Action<Void, Void, NoError> {
+        let doneRACAction = Action<Void, Void, Never> {
             self.doneObserver.send(value: Void())
             return SignalProducer.empty
         }
@@ -64,5 +64,5 @@ class SettingsViewModel: NSObject, CanSupplyDataContext {
 
     // MARK: Private
     
-    fileprivate var doneObserver: Signal<Void, NoError>.Observer
+    fileprivate var doneObserver: Signal<Void, Never>.Observer
 }

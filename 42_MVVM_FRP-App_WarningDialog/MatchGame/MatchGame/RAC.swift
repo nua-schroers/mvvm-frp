@@ -17,9 +17,6 @@ import ReactiveSwift
 import ReactiveCocoa
 import UIKit
 
-import enum Result.NoError
-public typealias NoError = Result.NoError
-
 struct AssociationKey {
     static var hidden: UInt8 = 1
     static var alpha: UInt8 = 2

@@ -27,6 +27,15 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "6BA634971CF7471A00ECA7BF"
+            BuildableName = "MatchGameTests.xctest"
+            BlueprintName = "MatchGameTests"
+            ReferencedContainer = "container:MatchGame.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <Testables>
          <TestableReference
             skipped = "NO">
@@ -43,18 +52,17 @@
                </Test>
             </SkippedTests>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6BC766221D194CB70065CEA1"
+               BuildableName = "MatchGameUITests.xctest"
+               BlueprintName = "MatchGameUITests"
+               ReferencedContainer = "container:MatchGame.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6BA634971CF7471A00ECA7BF"
-            BuildableName = "MatchGameTests.xctest"
-            BlueprintName = "MatchGameTests"
-            ReferencedContainer = "container:MatchGame.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -75,8 +83,6 @@
             ReferencedContainer = "container:MatchGame.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

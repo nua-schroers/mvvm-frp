@@ -46,5 +46,5 @@ struct DialogContext {
 protocol PresentDialog: class {
 
     /// Present a dialog with a title, a message, a main action and whether it should have a "Cancel" button.
-    var dialogSignal: Signal<DialogContext, NoError> { get }
+    var dialogSignal: Signal<DialogContext, Never> { get }
 }
